@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-ng",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JsDoc3 template based AngularJS (1.x)",
   "repository": {
     "type": "git",
