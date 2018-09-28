@@ -57,6 +57,16 @@
     </ul>
   </div>
 
+  <div ng-if="element.see">
+    <h4>See Also</h4>
+    <ul class="links">
+      <li ng-repeat="see in element.see">
+        <span ng-bind-html="see|html"></span>
+      </li>
+    </ul>
+  </div>
+
+
   <div ng-if="element.examples">
     <h4>Examples</h4>
     <div ng-include="'templates/content-example.html'" ng-repeat="example in element.examples"></div>
