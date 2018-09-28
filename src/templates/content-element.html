@@ -1,5 +1,5 @@
 <h3 id="{{element.name}}" class="literal">
-    <span class="kind">{{element.kind}}</span>
+    <span class="kind"><span class="async" ng-if="element.async">async&nbsp;</span>{{element.kind}}</span>
     <span class="name">{{element.name}}</span
    ><span ng-if="element.params || (element.kind == 'function') || (element.kind == 'class')"
      ><span>(</span
