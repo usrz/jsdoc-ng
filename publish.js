@@ -3,20 +3,15 @@ var logger = require('jsdoc/util/logger');
 var path = require('jsdoc/path');
 var fs = require('jsdoc/fs');
 
-/* Minification */
-function minify(html) {
-  return html;
-}
-
 function renderLinks(helper, doclet) {
   if (doclet.description) {
-    doclet.description = minify(helper.resolveLinks(doclet.description));
+    doclet.description = helper.resolveLinks(doclet.description);
   }
   if (doclet.classdesc) {
-    doclet.classdesc = minify(helper.resolveLinks(doclet.classdesc));
+    doclet.classdesc = helper.resolveLinks(doclet.classdesc);
   }
   if (doclet.summary) {
-    doclet.summary = minify(helper.resolveLinks(doclet.summary));
+    doclet.summary = helper.resolveLinks(doclet.summary);
   }
   if (doclet.examples) {
     for (var i in doclet.examples) { // not minified!
@@ -62,29 +57,6 @@ exports.publish = function(taffyData, opts, tutorials) {
   /* Break line after "Generating output files..." */
   logger.printInfo("\n");
 
-  /* Minify/uglify? (default: yes!) */
-  var doMinify = true;
-  if (env.conf.templates.minify != null) {
-    doMinify = env.conf.templates.minify;
-  }
-
-  /* Override the HTML minifier above */
-  if (doMinify) {
-    logger.info("Output minification enabled");
-    var minifier = require('html-minifier');
-    minify = function(html) {
-      return minifier.minify(html, {
-        removeComments: true,
-        collapseWhitespace: true,
-        conservativeCollapse: true,
-        preserveLineBreaks: false,
-        collapseBooleanAttributes: true
-      });
-    }
-  } else {
-    logger.info("Output minification disabled");
-  }
-
   /* Process all our doclets */
   var data = helper.prune(taffyData);
   helper.addEventListeners(data);
@@ -120,15 +92,9 @@ exports.publish = function(taffyData, opts, tutorials) {
              + ".constant('$doclets', " + JSON.stringify(doccos, null, 2) + ');'
              + "})();"
 
-  if (doMinify) {
-    logger.info("Minifying JavaScript output");
-    var uglifier = require('uglify-js');
-    script = uglifier.minify(script, {fromString: true}).code;
-  }
-
   /* Paths here and there */
   var outdir = opts.destination;
-  var srcdir = path.join(opts.template, '..');
+  var srcdir = path.join(__dirname);
   var fontdir = path.join(outdir, 'fonts');
   var libsdir = path.join(outdir, 'libs');
 
@@ -143,9 +109,6 @@ exports.publish = function(taffyData, opts, tutorials) {
     index = index.replace("<title>API Documentation</title>",
                           "<title>" + env.conf.templates.windowTitle + "</title>");
   }
-
-  /* Minify the index */
-  index = minify(index);
 
   /* Write index and doclet data */
   logger.printInfo("Writing output files...");
