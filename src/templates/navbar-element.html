@@ -11,7 +11,7 @@
     <li ng-if="elements.function" class="header">Functions</li>
     <li ng-if="elements.function"
         ng-repeat="function in elements.function">
-      <div class="kind-function" ng-class="{'static' : (function.scope == 'static')}">
+      <div class="kind-function" ng-class="{'static' : (function.scope == 'static'), 'access' : (member.access)}">
         <a ng-href="#!/{{function.$href}}">{{function.name}}</a>
       </div>
     </li>
@@ -19,7 +19,7 @@
     <li ng-if="elements.member" class="header">Members</li>
     <li ng-if="elements.member"
         ng-repeat="member in elements.member">
-      <div class="kind-member" ng-class="{'static' : (member.scope == 'static')}">
+      <div class="kind-member" ng-class="{'static' : (member.scope == 'static'), 'access' : (member.access)}">
         <a ng-href="#!/{{member.$href}}">{{member.name}}</a>
       </div>
     </li>

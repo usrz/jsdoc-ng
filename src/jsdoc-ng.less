@@ -190,6 +190,42 @@ div.nav {
         }
       }
 
+      /* Protected label for function/members */
+      .access {
+        position: relative;
+        font-style: italic;
+
+        a {
+          color: #666;
+        }
+
+        &:before {
+          content: "P" ;
+          display: block;
+          position: absolute;
+          text-align: center;
+          width: 10px;
+          min-width: 10px;
+          max-width: 10px;
+          height: 10px;
+          min-height: 10px;
+          max-height: 10px;
+          overflow: hide;
+          top: 2px;
+          left: -16px;
+          font-size: 7px;
+          padding: 1px 0px 0px 0px;
+          font-weight: bold;
+          font-style: normal;
+          background-color: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 3px;
+          color: #999;
+          opacity: 0.5;
+        }
+      }
+
+
       /* Spacing, positioning, expansion */
       > li {
         margin: 2px 0px 2px 20px;

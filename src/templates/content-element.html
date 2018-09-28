@@ -11,6 +11,7 @@
    ><span class="types" ng-if="element.type.names"
      ><span class="type" ng-repeat="type in element.type.names" ng-bind-html="type|type"></span
    ></span
+   ><span class="extra" ng-if="element.access">{{element.access}}</span
    ><span class="extra" ng-if="element.scope == 'static'">static</span
    ><span class="extra" ng-if="element.readonly">read-only</span>
 </h3>
