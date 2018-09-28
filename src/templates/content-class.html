@@ -2,6 +2,12 @@
   <span class="kind">class</span>
   <span class="prefix" ng-if="doclet.$prefix">{{doclet.$prefix}}.</span
   ><span class="name">{{doclet.name}}</span>
+  <span ng-if="augments" class="extends">extends
+    <span ng-repeat="parent in augments track by $index">
+      <span ng-if="!$first">,&nbsp;</span>
+      <a ng-href="#!/{{parent.$href}}">{{parent.name}}</a>
+    </span>
+  </span>
 </h1>
 
 <div ng-if="doclet.classdesc" ng-bind-html="doclet.classdesc|html"></div>

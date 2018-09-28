@@ -358,6 +358,12 @@ ngDoc.controller('contentController', ['$scope', '$location', '$title', '$doclet
         if (parent && (parent.kind == 'class')) {
           $scope.template = "templates/content-class.html";
           $scope.doclet = parent;
+          if (parent.augments && parent.augments.length) {
+            $scope.augments = [];
+            for (var i in parent.augments) {
+              $scope.augments.push($docletsByName[parent.augments[i]]);
+            }
+          }
           $this.apply({memberof: parent.longname});
         } else if (parent && (parent.kind == 'module')) {
           $scope.template = "templates/content-module.html";
