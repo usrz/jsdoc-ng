@@ -78,6 +78,10 @@ exports.publish = function(taffyData, opts, tutorials) {
     delete current.___id;
     delete current.___s;
 
+    if (Array.isArray(current.params) && (! current.params.length)) {
+      delete current.params;
+    }
+
     current.$href = createLink(helper, doclet, taffyData);
     current.$id = id;
 
