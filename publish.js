@@ -14,7 +14,7 @@ function renderLinks(helper, doclet) {
     doclet.summary = helper.resolveLinks(doclet.summary);
   }
   if (doclet.examples) {
-    for (var i in doclet.examples) { // not minified!
+    for (var i in doclet.examples) {
       doclet.examples[i] = helper.resolveLinks(doclet.examples[i]);
     }
   }
